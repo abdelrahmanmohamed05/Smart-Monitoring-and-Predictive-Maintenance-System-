@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smart-motor-pdm.local/schemas/mqtt-telemetry.schema.json",
+  "title": "Motor MQTT Telemetry",
+  "description": "Calibrated sensor sample published by the ESP32. MQTT topic: motors/{motor_id}/telemetry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "motor_id",
+    "ts",
+    "seq",
+    "vib_x",
+    "vib_y",
+    "vib_z",
+    "temp_c",
+    "current_a"
+  ],
+  "properties": {
+    "motor_id": {
+      "type": "string",
+      "description": "Stable motor identifier used in the MQTT topic path motors/{motor_id}/telemetry"
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Sample timestamp in ISO-8601 UTC (e.g. 2026-11-26T20:15:30.123Z)"
+    },
+    "seq": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monotonic sequence number per motor_id for loss detection"
+    },
+    "vib_x": {
+      "type": "number",
+      "description": "Vibration acceleration on X axis, unit: g (MPU-6050)"
+    },
+    "vib_y": {
+      "type": "number",
+      "description": "Vibration acceleration on Y axis, unit: g (MPU-6050)"
+    },
+    "vib_z": {
+      "type": "number",
+      "description": "Vibration acceleration on Z axis, unit: g (MPU-6050)"
+    },
+    "temp_c": {
+      "type": "number",
+      "description": "Motor / housing temperature, unit: °C (DS18B20)"
+    },
+    "current_a": {
+      "type": "number",
+      "description": "Line / load current, unit: A (ACS712)"
+    }
+  },
+  "examples": [
+    {
+      "motor_id": "motor-01",
+      "ts": "2026-11-26T20:15:30.123Z",
+      "seq": 1042,
+      "vib_x": 0.12,
+      "vib_y": -0.05,
+      "vib_z": 0.98,
+      "temp_c": 42.5,
+      "current_a": 3.14
+    }
+  ]
+}

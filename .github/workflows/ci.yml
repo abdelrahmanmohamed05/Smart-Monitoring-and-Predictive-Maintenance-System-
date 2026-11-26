@@ -1,0 +1,12 @@
+# Placeholder CI — harmless check so pull_request workflows do not fail.
+name: ci
+
+on:
+  pull_request:
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder (no-op)
+        run: echo "CI placeholder — no checks configured yet"

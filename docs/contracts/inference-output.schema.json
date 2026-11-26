@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smart-motor-pdm.local/schemas/inference-output.schema.json",
+  "title": "Inference Output",
+  "description": "Predictive maintenance inference result returned by the AI serving path (via FastAPI)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "motor_id",
+    "ts",
+    "status",
+    "fault_type",
+    "rul_hours",
+    "shap_top_part",
+    "health_score",
+    "roi_savings",
+    "model_version"
+  ],
+  "properties": {
+    "motor_id": {
+      "type": "string",
+      "description": "Motor identifier matching telemetry motor_id"
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Inference timestamp in ISO-8601 UTC"
+    },
+    "status": {
+      "type": "string",
+      "description": "High-level health status (e.g. normal, anomalous, faulted)",
+      "enum": ["normal", "anomalous", "faulted"]
+    },
+    "fault_type": {
+      "type": ["string", "null"],
+      "description": "Predicted fault class, or null when status is normal"
+    },
+    "rul_hours": {
+      "type": ["number", "null"],
+      "description": "Estimated remaining useful life in hours; null if not applicable"
+    },
+    "shap_top_part": {
+      "type": ["string", "null"],
+      "description": "Component/feature with highest SHAP contribution for the prediction"
+    },
+    "health_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Composite health score from 0 (critical) to 100 (healthy)"
+    },
+    "roi_savings": {
+      "type": "number",
+      "description": "Estimated cost savings / ROI figure associated with early intervention (currency units TBD by team)"
+    },
+    "model_version": {
+      "type": "string",
+      "description": "Version tag of the model/artifact bundle used for this inference"
+    }
+  },
+  "examples": [
+    {
+      "motor_id": "motor-01",
+      "ts": "2026-11-26T20:16:00.000Z",
+      "status": "anomalous",
+      "fault_type": "bearing_wear",
+      "rul_hours": 120.5,
+      "shap_top_part": "bearing",
+      "health_score": 62.0,
+      "roi_savings": 1500.0,
+      "model_version": "v0.0.0-placeholder"
+    }
+  ]
+}

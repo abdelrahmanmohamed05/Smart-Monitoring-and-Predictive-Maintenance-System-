@@ -1,0 +1,7 @@
+# Placeholder OpenAPI document — fill in during Layer 2 (Backend).
+# No paths or schemas defined yet.
+openapi: 3.0.3
+info:
+  title: Smart Motor PDM API
+  version: 0.0.0
+paths: {}
