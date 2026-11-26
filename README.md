@@ -67,6 +67,14 @@ Work is **strictly sequential**. A layer may start only after the previous layer
 | `simulator/` | Optional fake ESP32 MQTT publisher (later) |
 | `scripts/` | Shared utility scripts (later) |
 
+## Contributing & process
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) — branch model, commits, PRs, contracts, what not to commit, how to close a gate
+- [docs/branching.md](docs/branching.md) — branch diagram and exact git commands
+- [docs/gates/](docs/gates/) — handover gate checklists (Gate 1–4) with evidence lines
+- [docs/safety.md](docs/safety.md) — 220V AC test bench safety checklist (required before powered tests)
+- [CHANGELOG.md](CHANGELOG.md) — Keep a Changelog entries per layer tag
+
 ## Quick start
 
 > **TODO** — Fill in once Layer 1 handover is complete and Docker / env setup is documented.
